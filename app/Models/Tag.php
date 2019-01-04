@@ -31,5 +31,16 @@ class Tag extends Model
         }
 
         $found = static::whereIn('tag', $tags)->get()->pluck('tag')->all();
+
+        foreach (array_diff($tags, $found) as $tag) {
+            static::create([
+                'tag' => $tag,
+                'title' => $tag,
+                'subtitle' => 'Subtitle for '.$tag,
+                'page_image' => '',
+                'meta_description' => '',
+                'reverse_direction' => false,
+            ]);
+        }
     }
 }
