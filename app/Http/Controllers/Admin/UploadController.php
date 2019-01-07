@@ -98,7 +98,12 @@ class UploadController extends Controller
         $type = $this->manager->fileType($file['name']);
         $fileName = $request->get('file_name');
         $fileName = $fileName ?: $file['name'];
-        $path = str_finish($request->get('folder'), '/').$fileName.'.'.$type;
+        if (!empty($request->get('file_name'))) {
+            $path = str_finish($request->get('folder'), '/').$fileName.'.'.$type;
+        } else {
+            $path = str_finish($request->get('folder'), '/').$fileName;
+        }
+
         $content = File::get($file['tmp_name']);
 
         $result = $this->manager->saveFile($path, $content);

@@ -150,12 +150,12 @@ class PostController extends Controller
      */
     public function fieldsFromModel($id, array $fields)
     {
-        $post = findOrFail($id);
+        $post = Post::findOrFail($id);
         $fieldsNames = array_keys(array_except($fields, ['tag']));
-        $fields = ['id' => $id];
 
+        $fields = ['id' => $id];
         foreach ($fieldsNames as $field) {
-            $fields[$fields] = $post->{$fields};
+            $fields[$field] = $post->{$field};
         }
 
         $fields['tags'] = $post->tags->pluck('tag')->all();

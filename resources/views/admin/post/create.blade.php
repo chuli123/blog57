@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('style')
+@section('styles')
     <link href="{{ asset('css/pickadate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/selectize.default.css') }}" rel="stylesheet">
 @stop
